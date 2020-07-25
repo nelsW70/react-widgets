@@ -27,9 +27,12 @@ const Search = () => {
           srsearch: debouncedTerm,
         },
       });
+
       setResults(data.query.search);
     };
-    search();
+    if (debouncedTerm) {
+      search();
+    }
   }, [debouncedTerm]);
 
   const renderedResults = results.map((result) => {
@@ -60,7 +63,7 @@ const Search = () => {
             value={term}
             onChange={(e) => setTerm(e.target.value)}
             className="input"
-          ></input>
+          />
         </div>
       </div>
       <div className="ui celled list">{renderedResults}</div>
